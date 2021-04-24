@@ -760,24 +760,24 @@ function next() {
     } else {
         if (selectedOption == 2) {
             selectedOption = Math.floor((Math.random() * 2));
-            qqqq = qnn["option" + selectedOption]["related"];
-            newCountriesScore["au"] += qqqq["au"];
-            newCountriesScore["dk"] += qqqq["dk"];
-            newCountriesScore["no"] += qqqq["no"];
-            newCountriesScore["de"] += qqqq["de"];
-            newCountriesScore["ie"] += qqqq["ie"];
-            newCountriesScore["us"] += qqqq["us"];
-            newCountriesScore["nl"] += qqqq["nl"];
-            newCountriesScore["gb"] += qqqq["gb"];
-            newCountriesScore["ch"] += qqqq["ch"];
-            newCountriesScore["se"] += qqqq["se"];
-            newCountriesScore["fi"] += qqqq["fi"];
-            newCountriesScore["be"] += qqqq["be"];
-            newCountriesScore["fr"] += qqqq["fr"];
-            newCountriesScore["at"] += qqqq["at"];
-            newCountriesScore["es"] += qqqq["es"];
-            newCountriesScore["it"] += qqqq["it"];
         }
+        var qqqq = qnn["option" + selectedOption]["related"];
+        newCountriesScore["au"] += qqqq["au"];
+        newCountriesScore["dk"] += qqqq["dk"];
+        newCountriesScore["no"] += qqqq["no"];
+        newCountriesScore["de"] += qqqq["de"];
+        newCountriesScore["ie"] += qqqq["ie"];
+        newCountriesScore["us"] += qqqq["us"];
+        newCountriesScore["nl"] += qqqq["nl"];
+        newCountriesScore["gb"] += qqqq["gb"];
+        newCountriesScore["ch"] += qqqq["ch"];
+        newCountriesScore["se"] += qqqq["se"];
+        newCountriesScore["fi"] += qqqq["fi"];
+        newCountriesScore["be"] += qqqq["be"];
+        newCountriesScore["fr"] += qqqq["fr"];
+        newCountriesScore["at"] += qqqq["at"];
+        newCountriesScore["es"] += qqqq["es"];
+        newCountriesScore["it"] += qqqq["it"];
     }
     currentQn = currentQn + 1;
     resetOptions();
@@ -787,7 +787,6 @@ function next() {
         showPage(2);
     }
 }
-
 
 function calCountryCode() {
     var countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
@@ -917,7 +916,7 @@ function showCountry(fromGoogle) {
 
     if (fromGoogle) {
         window.location.href =
-            `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state={"country":"5666"}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
+            `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state={"country":"${calCountryCode()}"}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
     if (returned == "true") {
         const jsonStateStr = queryString.split("&")[1]
