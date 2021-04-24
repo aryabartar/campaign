@@ -790,6 +790,7 @@ function next() {
 
 
 function calCountryCode() {
+    var countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
     if (score["way"] == 5) {
         var keys = Object.keys(newCountriesScore);
         var candidate = new Array();
@@ -831,7 +832,6 @@ function calCountryCode() {
         return countryResultCode;
     } else {
         countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
-        console.log(countryResultCode);
         // get the description of the personality and update the result page
         //var countryResult = country[countryResultCode];
         return countryResultCode;
