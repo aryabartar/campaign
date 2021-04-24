@@ -903,7 +903,7 @@ function validateEmail() {
     var mailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var inputText = $("#email").val();
     if (inputText.match(mailformat)) {
-        finalResult();
+        finalResult(calCountryCode());
     } else {
         console.log("false");
     }
@@ -921,9 +921,7 @@ function showCountry(fromGoogle) {
     if (returned == "true") {
         const jsonStateStr = queryString.split("&")[1]
         const jsonStateDecodedStr = jsonStateStr.replaceAll("%22", '"')
-        console.log(jsonStateDecodedStr)
         const returnedCountryCode = JSON.parse(jsonStateDecodedStr)['country']
-        console.log(returnedCountryCode)
         finalResult(returnedCountryCode);
     }
 }
