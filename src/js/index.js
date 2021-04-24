@@ -789,11 +789,7 @@ function next() {
 }
 
 
-
-function finalResult(countrySelectedCode = 0) {
-var countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
-var countryResult = country[countryResultCode];
-if(countrySelectedCode == 0) {
+function calCountryCode() {
     if (score["way"] == 5) {
         var keys = Object.keys(newCountriesScore);
         var candidate = new Array();
@@ -832,18 +828,26 @@ if(countrySelectedCode == 0) {
                 countryResultCode = key;
             }
         }
-
+        return countryResultCode;
     } else {
         countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
+        console.log(countryResultCode);
         // get the description of the personality and update the result page
-        var countryResult = country[countryResultCode];
+        //var countryResult = country[countryResultCode];
+        return countryResultCode;
     }
-} else {
-    console.log('test')
-    countryResult = country[countrySelectedCode];
-    countryResultCode = countrySelectedCode;
-    console.log(countryResultCode)
 }
+
+
+function finalResult(countrySelectedCode = 0) {
+    let countryResultCode;
+    if (countrySelectedCode == 0) {
+        var countryResult = calCountryCode();
+    } else {
+        countryResult = country[countrySelectedCode];
+        countryResultCode = countrySelectedCode;
+    }
+
     document.getElementById("personality-type").innerText = "پیشنهاد ابرادین برای شما: " + countryResult["name"];
     var polaroidImage = '<div class="polaroidImage"><img src="' + 'src/images/countries/' +countryResult["image"]+ '.jpg" id="country-image"><div class="imageTitle">'+countryResult["name"]+'<img src="https://flagcdn.com/32x24/'+ countryResult["code"] +'.png" id="country-flag"></div> </div>';
     document.getElementById("personality-part-1").innerHTML = polaroidImage + countryResult["content"];
@@ -895,6 +899,7 @@ if(countrySelectedCode == 0) {
 
 }
 
+
 function validateEmail() {
     var mailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var inputText = $("#email").val();
@@ -911,8 +916,9 @@ function showCountry(fromGoogle) {
     const returned = urlParams.get('return');
 
     if(fromGoogle) {
-        window.location.href =
-        `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state:{"country"=${googleCode}}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
+        console.log(calCountryCode())
+        // window.location.href =
+        // `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state:{"country"=${calCountryCode()}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
     if(returned == "true") {
         const jsonStateStr =queryString.split("&")[1]
