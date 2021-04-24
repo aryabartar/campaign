@@ -1,0 +1,86 @@
+.final-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin: 0px 70px;
+}
+.final-form-container {
+
+}
+.final-form-container h2 {
+  margin-bottom: 25px;
+}
+.final-form-container p {
+  max-width: 513px;
+}
+.final-form .google-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #dedede;
+  font-weight: normal;
+  font-size: 16px;
+}
+.google-btn img {
+  margin: 0px 10px;
+}
+.final-form {
+  margin-top: 35px;
+}
+.final-form p {
+  width: 100%;
+  margin: 15px 0px;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+}
+.final-form p::before, .final-form p::after {
+  display: inline-block;
+  content: "";
+  border-top: 1px solid #DEDEDE;
+  width: 42%;
+  margin: 0 1rem;
+}
+.final-form input {
+  padding: 16px;
+  outline: none;
+  width: 100%;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid #dedede;
+}
+.final-form button[type="submit"] {
+  border-radius: 10px;
+  background: #524bfd;
+  color: white;
+  width: 100%;
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 25px;
+}
+
+@media screen and (max-width: 1024px) {
+  .final-container {
+    max-width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .congrats-image {
+    max-width: 159px;
+    max-height: 170px;
+    margin-bottom: 25px;
+  }
+  .final-form p::before, .final-form p::after {
+    max-width: 30%;
+  }
+}

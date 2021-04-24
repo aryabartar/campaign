@@ -1,0 +1,221 @@
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181393592-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-181393592-1');
+  </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="twitter:site" content="abroadin.com">
+    <meta name="twitter:creator" content="abroadin.com">
+    <meta name="twitter:title" content="به کمپین مقصد من خوش آمدید">
+    <meta name="twitter:description">
+    <meta name="twitter:url" property="og:url" content="">
+    <meta name="twitter:image" itemprop="image" property="og:image" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="title" property="og:title" content="کمپین #مقصد_من | ابرادین">
+    <meta name="image" property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:description">
+    <meta property="og:site_name" content="کمپین #مقصد_من | ابرادین">
+    <meta property="og:type" content="website">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:width" content="1500">
+    <meta property="og:image:height" content="750">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="400">
+  <script>
+    var image = document.querySelectorAll('meta[property="og:image"')
+    var url = document.querySelectorAll('meta[property="og:url"');
+    image.forEach((el) => {
+    el.setAttribute("content", `https://abroadin.com/my-destination/src/images/thumbnails/${window.location.search.split("?country=")[1]}.jpg`)
+    })
+    url.forEach((el) => {
+      el.setAttribute("content", `${window.location.href}`)
+    })
+  </script>
+  <title>ابرادین | #مقصدمن</title>
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <a class="logo" href="https://abroadin.com"><img src="./src/images/logo.svg" alt=""></a>
+
+    <!-- Welcome Page -->
+      <div class="welcome-container quiz-step" id="welcome">
+        <div class="welcome-content-container">
+          <div class="content-container">
+            <h1>#<span>مقصدمن</span> <br/>
+              </h1>
+            <p>کدوم کشور واست بهتره؟</p>
+            <p>این روزا خیلی‌ها تصمیم دارن که مهاجرت تحصیلی کنن. واسه انتخاب مقصد کلی گزینه وجود داره، اما کدومش واسه شما مناسب‌تره؟</p>
+            <button onclick="showPage(1); setupQuestion();">
+              همین حالا شروع کنید
+              <img src="./src/icons/Iconly-Light-Arrow - Left 3.svg" alt="">
+            </button>
+          </div>
+        </div>
+        <img class="image-intro" src="./src/images/welcome.png" alt="">
+      </div>
+    <!-- End Welcome Page -->
+
+    <!-- Question Page -->
+      <div class="question-container quiz-step hidden" id="promotion">
+        <div class="page-counter"></div>
+        <div class="col">
+          <div class="question">
+            <h2 id="question"></h2>
+              <ul class="options">
+                <li class="option-container" id="option0" onclick="select(this)">
+                  <input type="radio" name="answer" value="" onchange="next()">
+                  <h4 class="question-title option-title"></h4>
+                  <p class="content option-description"></p>
+                </li>
+                <li class="option-container"id="option1" onclick="select(this)">
+                  <input type="radio" name="answer" value="" onchange="next()">
+                  <h4 class="question-title option-title"></h4>
+                  <p class="content option-description"></p>
+                </li>
+                <li class="option-container" id="option2" onclick="select(this)">
+                  <input type="radio" name="answer" value="" onchange="next()">
+                  <h4 class="question-title option-title"></h4>
+                  <p class="content option-description"></p>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <img class="question-image" id="questionImage" src="./src/images/question-1.png" alt="">
+      </div>
+    <!-- End Question Page -->
+    <!-- Final Page -->
+      <div class="final-container quiz-step hidden">
+        <img class="congrats-image" src="./src/images/result.png" alt="">
+        <div class="final-form-container">
+          <h2>خب بریم سراغ نتیجه...</h2>
+          <p> با وارد کردن ایمیلت یه هدیه از لایسنس مارکت می‌گیری و می‌تونی نتیجه رو ببینی. بعد از مشاهده نتیجه حتما ایمیلت رو چک کن</p>
+          <div class="final-form">
+            <button class="google-btn" onclick="showCountry(true)">
+              <img src="./src/icons/google.svg" alt="">
+              اقدام با گوگل
+            </button>
+            <p>یا</p>
+            <div class="contact-form">
+              <!-- Abroadin Signup Form HTML Code -->
+              <div id="sib_embed_signup" style="padding: 10px;">
+                  <div class="forms-builder-wrapper"><input
+                          type="hidden" id="sib_embed_signup_lang" value="fa"> <input type="hidden"
+                                                                                      id="sib_embed_invalid_email_message"
+                                                                                      value="آدرس ایمیل وارد شده صحیح نیست، لطفا ایمیل خود را به صورت صحیح وارد کنید.">
+                      <input type="hidden" name="primary_type" id="primary_type" value="email">
+                      <div id="sib_loading_gif_area" style="position: absolute;z-index: 9999;display: none;"><img
+                              src="https://my.pakat.net/public/theme/version4/assets/images/loader_sblue.gif"
+                              style="display: block;margin-left: auto;margin-right: auto;position: relative;top: 40%;"></div>
+                      <form class="description" id="theform" name="theform"
+                            action="https://my.pakat.net/users/subscribeembed/js_id/6kz6/id/5" onsubmit="return false;"><input
+                              type="hidden" name="js_id" id="js_id" value="6kz6"><input type="hidden" name="from_url"
+                                                                                        id="from_url" value="yes"><input
+                              type="hidden" name="hdn_email_txt" id="hdn_email_txt" value="">
+                          <div class="sib-container rounded ui-sortable"
+                              >
+                              <input type="hidden" name="req_hid" id="req_hid" value="">
+
+                              <div class="view-messages" style=" margin:5px 0;"></div> <!-- an email as primary -->
+                              <div class="primary-group email-group forms-builder-group ui-sortable" style="">
+                                  <div class="row mandatory-email"
+                                      >
+                                      <div class="lbl-tinyltr">
+                                          <br></div>
+                                      <input type="text" name="email" id="email" value="" placeholder="ایمیل خود را وارد کنید" />
+                                      <div style="clear:both;"></div>
+                                  </div>
+                              </div> <!-- end of primary -->
+                              <div class="byline"
+                                   style="display: block;">
+                                  <button class="button" type="submit" data-editfield="subscribe" onclick="validateEmail()">
+                                    مشاهده نتیجه
+                                  </button>
+                              </div>
+                              <div style="clear:both;"></div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <script type="text/javascript"> var sib_prefix = 'sib';
+              var sib_dateformat = 'dd-mm-yyyy'; </script>
+              <script type='text/javascript'
+                      src='https://my.pakat.net/public/theme/version4/assets/js/src/subscribe-validate.js?v=1616742164'></script>
+
+              <!-- End : Abroadin Signup Form HTML Code -->
+          </div>
+            <!-- <form  id="theform" name="theform"
+            action="https://my.pakat.net/users/subscribeembed/js_id/6kz6/id/5" onsubmit="return false;">
+              <input type="email" id="email" name="email" placeholder="ایمیل خود را وارد کنید">
+              <button type="submit" data-editfield="subscribe" onclick="validateEmail()">مشاهده نتیجه</button>
+            </form> -->
+          </div>
+        </div>
+        <script type='text/javascript'
+        src='https://my.pakat.net/public/theme/version4/assets/js/src/subscribe-validate.js?v=1616742164'></script>
+      </div>
+    <!-- End Final Page -->
+    <!-- Result Page -->
+    <div class="result-container quiz-step hidden" id="promotion">
+      <div class="share-banner-container">
+        <div class="col">
+          <h3>15 رزومه رایگان، برای 15 نفر</h3>
+          <p>
+            شما هم در لیست قرعه‌کشی «نگارش 15 رزومه رایگان برای 15 نفر» قرار گرفتید.
+            <br>
+            با به اشتراک گذاشتن این کمپین در شبکه‌های اجتماعی شانستون رو بیشتر کنید.
+            <br>
+            هر چی بیشتر روی لینک اختصاصی شما کلیک بشه، شانستون بیشتر میشه.
+          </p>
+          <div class="social-icons">
+            <a href="" id="telegramShareUrl" target="_blank"><img src="./src/icons/telegram.svg" alt=""></a>
+            <a download="abroadin-story.jpg" target="_blank" href="" id="resultStory" title="ImageName"><img src="./src/icons/instagram.svg" alt=""></a>
+            <a href="" id="twitterShareUrl" target="_blank"><img src="./src/icons/twitter.svg" alt=""></a>
+          </div>
+        </div>
+        <div class="col">
+          <img src="./src/images/social-media.png" alt="">
+
+        </div>
+      </div>
+<div class="admit-banner-container">
+        <div class="col">
+          <h3>تخمین شانس پذیرش</h3>
+          <p>ابرادین شانس شما برای پذیرش گرفتن از دانشگاه‌های مختلف دنیا رو محاسبه میکنه. </p>
+        </div>
+        <div class="col">
+          <a class="admit-btn" href="https://abroadin.com">تخمین شانس رایگان</a>
+        </div>
+      </div>
+
+      <div class="country-container">
+        <div class="country-title">
+          <h3 id="personality-type" class="country-name" style="margin-left:10px;">کشور مناسب شما:</h3>
+        </div>
+        <!--<img src="" id="country-image">
+        <br clear="left">-->
+        <p id="personality-part-1" class="country-description"></p>
+
+      </div>
+
+
+    </div>
+    </div>
+    <!-- End Result Page -->
+    </div>
+  </div>
+  <script src="./src/js/jquery-2.1.0.min.js"></script>
+  <script src="./src/js/index.js"></script>
+</body>
+</html>

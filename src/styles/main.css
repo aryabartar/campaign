@@ -1,0 +1,122 @@
+@import '../fonts/css/style.css';
+@import './welcome.css';
+@import './questions.css';
+@import './final.css';
+@import './result.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #262444;
+}
+
+body {
+  background-color: #F4F4F4;
+}
+
+h1, h2, h3 {
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+a {
+  text-decoration: none;
+  color: #524BFD;
+}
+
+a, img {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  font-family: 'iranyekan' !important;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 18px 25px;
+  border-radius: 13px;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  padding: 40px 50px;
+  height: 100vh;
+}
+
+.wrapper {
+  max-width: 1266px;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo{
+  position: absolute;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 30px 10px;
+  }
+  .logo{
+    display: none;
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  h1, h2 {
+    font-size: 24px !important;
+  }
+  h3 {
+    font-size: 20px !important;
+  }
+  p {
+    font-size: 14px !important;
+  }
+  button {
+    padding: 18px 15px;
+  }
+}
