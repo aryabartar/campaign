@@ -917,8 +917,9 @@ function showCountry(fromGoogle) {
 
     if(fromGoogle) {
         console.log(calCountryCode())
-        // window.location.href =
-        // `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state:{"country"=${calCountryCode()}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
+        const canadaCode = 5666
+        window.location.href =
+        `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state={"country":${canadaCode}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
     if(returned == "true") {
         const jsonStateStr =queryString.split("&")[1]
