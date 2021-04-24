@@ -837,7 +837,6 @@ if(countrySelectedCode == 0) {
         countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
         // get the description of the personality and update the result page
         var countryResult = country[countryResultCode];
-
     }
 } else {
     console.log('test')
@@ -909,14 +908,19 @@ function validateEmail() {
 function showCountry(fromGoogle) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const countryCode = parseInt(urlParams.get('country'));
     const returned = urlParams.get('return');
+
     if(fromGoogle) {
-        window.location.href = 
-        `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state=country=${countryCode}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
+        window.location.href =
+        `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state:{"country"=${googleCode}}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
     if(returned == "true") {
-        finalResult(countryCode);
+        const jsonStateStr =queryString.split("&")[1]
+        const jsonStateDecodedStr = jsonStateStr.replaceAll("%22", '"')
+        console.log(jsonStateDecodedStr)
+        const returnedCountryCode = JSON.parse(jsonStateDecodedStr)['country']
+        console.log(returnedCountryCode)
+        finalResult(returnedCountryCode);
     }
 }
 
