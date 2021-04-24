@@ -707,42 +707,42 @@ var currentQn = 0;
 
 // for setting up each of the questions
 function setupQuestion() {
-  // get the current questions content
-  var qn = questions["soal" + currentQn];
-  var qnText = document.getElementById("question");
-  qnText.innerText = qn.text;
-  // update question image
-  var imgTag = document.getElementById("questionImage");
-  $(imgTag).attr("src", qn.image);
-  // updates each of the options for the current question
-  for (var i = 0; i < 3; i++) {
-      var option = document.getElementById("option" + i);
-      var optionImage = document.getElementsByClassName("option-image")[i];
-      var optionTitle = option.getElementsByClassName("question-title")[0];
-      var optionContent = option.getElementsByClassName("content")[0];
-      var optionInput = option.getElementsByTagName("input")[0];
-      var qnOption = qn["option" + i];
-      optionTitle.textContent = qnOption.title;
-      optionContent.innerHTML = qnOption.content;
-      $(optionInput).attr("value", qnOption.value);
-      $(optionInput).attr("id", "option" + i);
-      $(optionImage).attr("src", qnOption.image);
-  }
+    // get the current questions content
+    var qn = questions["soal" + currentQn];
+    var qnText = document.getElementById("question");
+    qnText.innerText = qn.text;
+    // update question image
+    var imgTag = document.getElementById("questionImage");
+    $(imgTag).attr("src", qn.image);
+    // updates each of the options for the current question
+    for (var i = 0; i < 3; i++) {
+        var option = document.getElementById("option" + i);
+        var optionImage = document.getElementsByClassName("option-image")[i];
+        var optionTitle = option.getElementsByClassName("question-title")[0];
+        var optionContent = option.getElementsByClassName("content")[0];
+        var optionInput = option.getElementsByTagName("input")[0];
+        var qnOption = qn["option" + i];
+        optionTitle.textContent = qnOption.title;
+        optionContent.innerHTML = qnOption.content;
+        $(optionInput).attr("value", qnOption.value);
+        $(optionInput).attr("id", "option" + i);
+        $(optionImage).attr("src", qnOption.image);
+    }
 }
 
 // to unselect all of the options
 function resetOptions() {
-  var btn = document.getElementsByTagName("input");
-  btn[0].checked = false;
-  btn[1].checked = false;
-  btn[2].checked = false;
+    var btn = document.getElementsByTagName("input");
+    btn[0].checked = false;
+    btn[1].checked = false;
+    btn[2].checked = false;
 }
 
 // to select the option that is clicked
 function select(element) {
-  var btn = element.getElementsByTagName("input")[0];
-  btn.checked = true;
-  next();
+    var btn = element.getElementsByTagName("input")[0];
+    btn.checked = true;
+    next();
 }
 
 // get the next questions, or display result if all questions were answered
@@ -759,7 +759,7 @@ function next() {
         score[resultParameter] = ans;
     } else {
         if (selectedOption == 2) {
-            selectedOption = Math.floor((Math.random()*2));
+            selectedOption = Math.floor((Math.random() * 2));
             qqqq = qnn["option" + selectedOption]["related"];
             newCountriesScore["au"] += qqqq["au"];
             newCountriesScore["dk"] += qqqq["dk"];
@@ -849,10 +849,10 @@ function finalResult(countrySelectedCode = 0) {
     }
 
     document.getElementById("personality-type").innerText = "پیشنهاد ابرادین برای شما: " + countryResult["name"];
-    var polaroidImage = '<div class="polaroidImage"><img src="' + 'src/images/countries/' +countryResult["image"]+ '.jpg" id="country-image"><div class="imageTitle">'+countryResult["name"]+'<img src="https://flagcdn.com/32x24/'+ countryResult["code"] +'.png" id="country-flag"></div> </div>';
+    var polaroidImage = '<div class="polaroidImage"><img src="' + 'src/images/countries/' + countryResult["image"] + '.jpg" id="country-image"><div class="imageTitle">' + countryResult["name"] + '<img src="https://flagcdn.com/32x24/' + countryResult["code"] + '.png" id="country-flag"></div> </div>';
     document.getElementById("personality-part-1").innerHTML = polaroidImage + countryResult["content"];
     var telegramShareTxt = "%D9%85%D9%86%20%D8%AF%D8%A7%D8%B1%D9%85%20%D9%85%DB%8C%D8%B1%D9%85%20" + countryResult["name"] + "%20%D8%8C%20%D8%AE%D9%88%D8%A8%DB%8C%20%D8%A8%D8%AF%DB%8C%20%D8%AF%DB%8C%D8%AF%DB%8C%D8%AF%20%D8%AD%D9%84%D8%A7%D9%84%20%DA%A9%D9%86%DB%8C%D8%AF%20%F0%9F%98%82%0A" + "%0A%D8%A7%D8%A8%D8%B1%D8%A7%D8%AF%DB%8C%D9%86%20%DB%8C%D9%87%20%DA%A9%D9%85%D9%BE%DB%8C%D9%86%20%D8%AF%D8%A7%D8%B1%D9%87%20%DA%A9%D9%87%20%D8%A8%D8%A7%20%DA%86%D9%86%D8%AF%D8%AA%D8%A7%20%D8%B3%D9%88%D8%A7%D9%84%20%D8%A8%D9%87%D8%AA%20%D9%85%DB%8C%DA%AF%D9%87%20%DA%A9%D8%AF%D9%88%D9%85%20%DA%A9%D8%B4%D9%88%D8%B1%20%D9%88%D8%A7%D8%B3%D9%87%20%D9%85%D9%87%D8%A7%D8%AC%D8%B1%D8%AA%20%D8%AA%D8%AD%D8%B5%DB%8C%D9%84%DB%8C%20%D8%A8%D9%87%D8%AA%D8%B1%D9%87.%0A15%20%D8%AA%D8%A7%20%D8%B1%D8%B2%D9%88%D9%85%D9%87%E2%80%8C%DB%8C%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%DB%8C%D9%87%20%D9%87%D8%AF%DB%8C%D9%87%20%D9%87%D9%85%20%D9%85%DB%8C%D8%AF%D9%87.%20%D8%B1%D9%88%DB%8C%20%D9%84%DB%8C%D9%86%DA%A9%20%D8%A8%D8%A7%D9%84%D8%A7%20%DA%A9%D9%84%DB%8C%DA%A9%20%DA%A9%D9%86%20%D9%88%20%D8%B4%D8%B1%DA%A9%D8%AA%20%DA%A9%D9%86%20%F0%9F%98%8D";
-    var ref = Math.floor((Math.random()*9999))+10000;
+    var ref = Math.floor((Math.random() * 9999)) + 10000;
     var twitterShareTxt =
         "%D8%B7%D8%A8%D9%82%20%D8%AA%D8%AD%D9%82%DB%8C%D9%82%D8%A7%D8%AA%20%D8%A8%D9%87%20%D8%B9%D9%85%D9%84%20%D8%A2%D9%85%D8%AF%D9%87%20%23%D9%85%D9%82%D8%B5%D8%AF%D9%85%D9%86%20"
         + countryResult["name"]
@@ -862,9 +862,9 @@ function finalResult(countrySelectedCode = 0) {
         + "%0A%0A%23abroadin%20%23%D9%BE%D8%B0%DB%8C%D8%B1%D8%B4_%D8%AA%D8%AD%D8%B5%DB%8C%D9%84%DB%8C%20%23%D8%AA%D8%AD%D8%B5%DB%8C%D9%84_%D8%AF%D8%B1_"
         + countryResult["name"]
         + "%0A%40abroadin_farsi%20";
-    document.getElementById("telegramShareUrl").setAttribute("href", "https://t.me/share/url?url=abroadin.com/my-destination?country="+countryResultCode+"&text=" + telegramShareTxt);
+    document.getElementById("telegramShareUrl").setAttribute("href", "https://t.me/share/url?url=abroadin.com/my-destination?country=" + countryResultCode + "&text=" + telegramShareTxt);
     document.getElementById("twitterShareUrl").setAttribute("href", "https://twitter.com/share?text=" + twitterShareTxt);
-    document.getElementById("resultStory").setAttribute("href","src/images/stories/"+countryResult["image"]+".jpg");
+    document.getElementById("resultStory").setAttribute("href", "src/images/stories/" + countryResult["image"] + ".jpg");
     // set question count to 0 so that when the user wishes to retry, the quiz is on the right question count
 
     currentQn = 0;
@@ -915,12 +915,12 @@ function showCountry(fromGoogle) {
     const urlParams = new URLSearchParams(queryString);
     const returned = urlParams.get('return');
 
-    if(fromGoogle) {
+    if (fromGoogle) {
         window.location.href =
-        `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state={"country":"${calCountryCode()""}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
+            `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state={"country":"${calCountryCode()}"}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
-    if(returned == "true") {
-        const jsonStateStr =queryString.split("&")[1]
+    if (returned == "true") {
+        const jsonStateStr = queryString.split("&")[1]
         const jsonStateDecodedStr = jsonStateStr.replaceAll("%22", '"')
         console.log(jsonStateDecodedStr)
         const returnedCountryCode = JSON.parse(jsonStateDecodedStr)['country']
@@ -935,12 +935,12 @@ function showCountry(fromGoogle) {
 // page 2: email
 // page 3: result
 function showPage(num) {
-  var pages = document.getElementsByClassName("quiz-step");
-  pages[0].style.display = "none";
-  pages[1].style.display = "none";
-  pages[2].style.display = "none";
-  pages[3].style.display = "none";
-  pages[num].style.display = "flex";
+    var pages = document.getElementsByClassName("quiz-step");
+    pages[0].style.display = "none";
+    pages[1].style.display = "none";
+    pages[2].style.display = "none";
+    pages[3].style.display = "none";
+    pages[num].style.display = "flex";
 }
 
 window.addEventListener("load", () => {
