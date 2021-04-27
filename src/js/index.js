@@ -913,23 +913,16 @@ function validateEmail() {
 function showCountry(fromGoogle) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const returned = urlParams.get('return');
     if (fromGoogle) {
         const codeNumber = calCountryCode().toString()
-        console.log(codeNumber)
-        console.log(typeof codeNumber)
-        const redirectQuery = `/my-destination?country=${codeNumber}`
-        console.log(redirectQuery)
+        const redirectQuery = `/my-destination/index.html?country="${codeNumber}.return=true"`
         window.location.href =
             `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state=${redirectQuery}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
-    if (returned == "true") {
-        const jsonStateStr = queryString.split("&")[1]
-        const jsonStateDecodedStr = jsonStateStr.replaceAll("%22", '"')
-        console.log(jsonStateDecodedStr)
-        const returnedCountryCode = JSON.parse(jsonStateDecodedStr)['country']
-        console.log(returnedCountryCode)
-        finalResult(returnedCountryCode);
+    const _return = decodeURIComponent(window.location.search).split("?country=\"")[1].split(".")[1].split("\"")[0].split("return=")[1]
+    if (_return == "true") {
+        const code = decodeURIComponent(window.location.search).split("?country=\"")[1].split(".")[0]
+        finalResult(code);
     }
 }
 
@@ -949,5 +942,4 @@ function showPage(num) {
 
 window.addEventListener("load", () => {
     showCountry()
-    console.log('onload')
 })
