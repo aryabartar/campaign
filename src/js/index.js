@@ -916,7 +916,10 @@ function showCountry(fromGoogle) {
     const returned = urlParams.get('return');
     if (fromGoogle) {
         const codeNumber = calCountryCode().toString()
+        console.log(codeNumber)
+        console.log(typeof codeNumber)
         const redirectQuery = `/my-destination?country=${codeNumber}`
+        console.log(redirectQuery)
         window.location.href =
             `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state=${redirectQuery}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
