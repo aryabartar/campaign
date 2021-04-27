@@ -760,24 +760,24 @@ function next() {
     } else {
         if (selectedOption == 2) {
             selectedOption = Math.floor((Math.random() * 2));
+            qqqq = qnn["option" + selectedOption]["related"];
+            newCountriesScore["au"] += qqqq["au"];
+            newCountriesScore["dk"] += qqqq["dk"];
+            newCountriesScore["no"] += qqqq["no"];
+            newCountriesScore["de"] += qqqq["de"];
+            newCountriesScore["ie"] += qqqq["ie"];
+            newCountriesScore["us"] += qqqq["us"];
+            newCountriesScore["nl"] += qqqq["nl"];
+            newCountriesScore["gb"] += qqqq["gb"];
+            newCountriesScore["ch"] += qqqq["ch"];
+            newCountriesScore["se"] += qqqq["se"];
+            newCountriesScore["fi"] += qqqq["fi"];
+            newCountriesScore["be"] += qqqq["be"];
+            newCountriesScore["fr"] += qqqq["fr"];
+            newCountriesScore["at"] += qqqq["at"];
+            newCountriesScore["es"] += qqqq["es"];
+            newCountriesScore["it"] += qqqq["it"];
         }
-        var qqqq = qnn["option" + selectedOption]["related"];
-        newCountriesScore["au"] += qqqq["au"];
-        newCountriesScore["dk"] += qqqq["dk"];
-        newCountriesScore["no"] += qqqq["no"];
-        newCountriesScore["de"] += qqqq["de"];
-        newCountriesScore["ie"] += qqqq["ie"];
-        newCountriesScore["us"] += qqqq["us"];
-        newCountriesScore["nl"] += qqqq["nl"];
-        newCountriesScore["gb"] += qqqq["gb"];
-        newCountriesScore["ch"] += qqqq["ch"];
-        newCountriesScore["se"] += qqqq["se"];
-        newCountriesScore["fi"] += qqqq["fi"];
-        newCountriesScore["be"] += qqqq["be"];
-        newCountriesScore["fr"] += qqqq["fr"];
-        newCountriesScore["at"] += qqqq["at"];
-        newCountriesScore["es"] += qqqq["es"];
-        newCountriesScore["it"] += qqqq["it"];
     }
     currentQn = currentQn + 1;
     resetOptions();
@@ -787,6 +787,7 @@ function next() {
         showPage(2);
     }
 }
+
 
 function calCountryCode() {
     var countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
@@ -824,13 +825,13 @@ function calCountryCode() {
         for (const [key, value] of Object.entries(country)) {
             if (value["code"] == final) {
                 countryResult = country[key];
-                console.log(key);
                 countryResultCode = key;
             }
         }
         return countryResultCode;
     } else {
         countryResultCode = (score["weather"] * 1000) + (score["budget"] * 100) + (score["food"] * 10) + (score["knowledge"] * 1);
+        console.log(newCountriesScore)
         // get the description of the personality and update the result page
         //var countryResult = country[countryResultCode];
         return countryResultCode;
@@ -903,7 +904,7 @@ function validateEmail() {
     var mailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var inputText = $("#email").val();
     if (inputText.match(mailformat)) {
-        finalResult(calCountryCode());
+        finalResult();
     } else {
         console.log("false");
     }
@@ -913,15 +914,18 @@ function showCountry(fromGoogle) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const returned = urlParams.get('return');
-
     if (fromGoogle) {
+        const codeNumber = calCountryCode().toString()
+        const redirectQuery = `/my-destination?country=${codeNumber}`
         window.location.href =
-            `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state={"country":"${calCountryCode()}"}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
+            `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://abroadin.com/auth/oauth2/google&state=${redirectQuery}&prompt=consent&response_type=code&client_id=696364929615-frl6151jgggmi923lu0clb4utsprbodl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline`
     }
     if (returned == "true") {
         const jsonStateStr = queryString.split("&")[1]
         const jsonStateDecodedStr = jsonStateStr.replaceAll("%22", '"')
+        console.log(jsonStateDecodedStr)
         const returnedCountryCode = JSON.parse(jsonStateDecodedStr)['country']
+        console.log(returnedCountryCode)
         finalResult(returnedCountryCode);
     }
 }
